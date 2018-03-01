@@ -69,7 +69,7 @@ public class Main {
 		B = Integer.parseInt(firstLine[4]);
 		T = Integer.parseInt(firstLine[5].split("\\r")[0]); 
 		
-		for(int i = 0; i < F; i++) {
+		for(int i = 1; i <= F; i++) {
 			emptyVehicles.add(new Vehicle(i));
 		}
 		
@@ -94,9 +94,72 @@ public class Main {
 		for(int i = 0; i < N; i++) {
 			System.out.println(emptyRides.get(i));
 		}
+		for(int t =0; t <= T;t++) {
+			for(int i =0; i < emptyRides.size();i++) {
+				Ride ride = emptyRides.get(i);
+				if(ride.finishTime <= t) {
+					emptyRides.remove(i);
+					i--;
+					continue;
+				}
+				Vehicle vehicle; 
+				Integer min = Integer.MAX_VALUE;
+				int minIndex = -1;
+				for(int j=0; j < emptyVehicles.size();j++) {
+					vehicle = emptyVehicles.get(j);
+					Integer dist = Math.abs(vehicle.currentPos.x - ride.startPos.x) + Math.abs(vehicle.currentPos.y - ride.startPos.y);
+					if(dist < min) {
+						min = dist;
+						minIndex = j;
+					}
+					
+				}
+				if(min + ride.distance + t > ride.finishTime) {
+					emptyRides.remove(i);
+					i--;
+					continue;
+				}
+				if(minIndex != -1) {
+					emptyRides.remove(i);
+					vehicle = emptyVehicles.get(minIndex);
+					emptyVehicles.remove(minIndex);
+					nonEmptyVehicles.add(vehicle);
+					vehicle.rideList.add(Integer.toString(ride.id));
+					vehicle.isEmpty = false;
+					vehicle.finishT = min + ride.distance + t;
+					i--;
+					
+				}
+			}
+			for(int i = 0; i<nonEmptyVehicles.size(); i++) {
+				Vehicle tempVehicle = nonEmptyVehicles.get(i);
+				//mape at t basina cikar
+				if(tempVehicle.finishT == t) {
+					nonEmptyVehicles.remove(i--);
+					emptyVehicles.add(tempVehicle);
+				}
+			}
+		}
+		
+		System.out.println("heheh");
+		for(int i = 0; i < F; i++) {
+			System.out.println(emptyVehicles.get(i).rideList);
+		}
+		
 		
 		//FileWrite(filename);
-		
+		PrintWriter writer = new PrintWriter("./output/"+filename+".out", "UTF-8");
+		for(int i = 0; i < emptyVehicles.size(); i++) {
+			String x ="";
+			for(int j = 0; j < emptyVehicles.get(i).rideList.size(); j++) {
+				x += emptyVehicles.get(i).rideList.get(j);
+				if(j != emptyVehicles.get(i).rideList.size() - 1)
+					x+= " ";
+			}
+			writer.println(emptyVehicles.get(i).id + " " + x);
+		}
+		System.out.println("DONE");
+		writer.close();
 	}
 
 }

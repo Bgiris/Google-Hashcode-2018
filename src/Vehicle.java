@@ -5,12 +5,14 @@ public class Vehicle {
 	public boolean isEmpty;
 	public ArrayList<String> rideList;
 	public Integer id;
+	public Integer finishT;
 	
 	public Vehicle(Integer id) {
 		this.id = id;
 		this.rideList = new ArrayList<String>();
 		this.currentPos = new Position(0,0);
 		this.isEmpty = true;
+		this.finishT = 0;
 	}
 	
 	public String toString() {
