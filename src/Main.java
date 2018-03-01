@@ -156,7 +156,7 @@ public class Main {
 				if(j != emptyVehicles.get(i).rideList.size() - 1)
 					x+= " ";
 			}
-			writer.println(emptyVehicles.get(i).id + " " + x);
+			writer.println(emptyVehicles.get(i).rideList.size() + " " + x);
 		}
 		System.out.println("DONE");
 		writer.close();
