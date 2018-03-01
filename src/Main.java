@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Main {
 	public static Integer R;
@@ -92,6 +93,7 @@ public class Main {
 			System.out.println(emptyRides.get(i));
 		}
 		
+		Collections.sort(emptyRides);
 		
 		//FileWrite(filename);
 		

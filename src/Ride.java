@@ -1,5 +1,5 @@
 
-public class Ride {
+public class Ride implements Comparable<Ride>{
 	
 	public Integer id;
 	public Position startPos;
@@ -28,4 +28,9 @@ public class Ride {
                 + "distance:" + this.distance + "  " 
                 + "isEmpty:" + this.isEmpty;
 	}
+	
+	public int compareTo(Ride other) {
+        return distance.compareTo(other.distance);
+    }
+	
 }
