@@ -7,6 +7,7 @@ public class Vehicle {
 	public Integer id;
 	
 	public Vehicle(Integer id) {
+		this.id = id;
 		this.rideList = new ArrayList<String>();
 		this.currentPos = new Position(0,0);
 		this.isEmpty = true;
