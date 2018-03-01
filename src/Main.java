@@ -85,6 +85,8 @@ public class Main {
 			emptyRides.add(new Ride(i-1, new Position(a,b), new Position(x,y), s, f));
 		}
 		
+		Collections.sort(emptyRides);
+		
 		for(int i = 0; i < F; i++) {
 			System.out.println(emptyVehicles.get(i));
 		}
@@ -92,8 +94,6 @@ public class Main {
 		for(int i = 0; i < N; i++) {
 			System.out.println(emptyRides.get(i));
 		}
-		
-		Collections.sort(emptyRides);
 		
 		//FileWrite(filename);
 		

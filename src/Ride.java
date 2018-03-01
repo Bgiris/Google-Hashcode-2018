@@ -30,7 +30,7 @@ public class Ride implements Comparable<Ride>{
 	}
 	
 	public int compareTo(Ride other) {
-        return distance.compareTo(other.distance);
+        return startTime.compareTo(other.startTime);
     }
 	
 }
