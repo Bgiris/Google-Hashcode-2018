@@ -11,4 +11,13 @@ public class Vehicle {
 		this.currentPos = new Position(0,0);
 		this.isEmpty = true;
 	}
+	
+	public String toString() {
+		String ridelist = new String();
+		for(int i=0;i < rideList.size();i++) {
+			ridelist = i + "	" + rideList.get(i) +"\n"; 
+		}
+		return "Id:" + this.id + "	" + "CurrentPos x:" + this.currentPos.x + "	y:" + 
+				this.currentPos.y + "	IsEmpty:" + this.isEmpty + "RideList:\n" + ridelist + "\n";  
+	}
 }
